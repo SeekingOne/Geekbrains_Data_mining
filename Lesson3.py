@@ -181,7 +181,7 @@ class ParseTheHellOutOfGbBlog:
     def run(self):
         next_page = self._process_page(self.start_url)
 
-        while next_page and self.processed_pages <= 5:
+        while next_page:
             next_page = self._process_page(next_page)
         print(f"\nПарсинг завершен. \nОбработано страниц: {self.processed_pages}")
         print(f"Обработано постов: {self.processed_posts}")
