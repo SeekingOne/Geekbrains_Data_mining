@@ -2,7 +2,6 @@ from scrapy import Field
 from scrapy.loader import ItemLoader
 from itemloaders.processors import TakeFirst, MapCompose, Join
 from scrapy.item import Item
-from urllib.parse import urljoin
 
 
 class VacancyData(Item):
@@ -48,8 +47,7 @@ def clean_str(src_str: str) -> str:
 
 
 def full_url(url: str, loader_context):
-    base_url = loader_context.get('url')
-    return urljoin(base_url, url)
+    return loader_context.get('response').urljoin(url)
 
 
 class HHVacancyLoader(ItemLoader):

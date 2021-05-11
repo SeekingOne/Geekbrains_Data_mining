@@ -21,7 +21,7 @@ class HHunterSpider(scrapy.Spider):
         yield from self._get_follow(response, "vacancies", self.parse_vacancy)
 
     def parse_vacancy(self, response):
-        vcy_load = HHVacancyLoader(item=VacancyData(), response=response, url=response.url)
+        vcy_load = HHVacancyLoader(item=VacancyData(), response=response)
         vcy_load.add_value("url", response.url)
         for fld, path in xp.vacancy_selectors.items():
             vcy_load.add_xpath(fld, path)
